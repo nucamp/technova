@@ -92,7 +92,6 @@ function AdminPortal({ user }) {
           </button>
         </div>
         <p style={{ marginTop: '10px', fontSize: '12px', color: '#666' }}>
-          💡 Try entering: backup.sql; cat /etc/passwd
         </p>
       </div>
 
@@ -157,21 +156,6 @@ function AdminPortal({ user }) {
             </tbody>
           </table>
         )}
-      </div>
-
-      <div className="card">
-        <h3>Security Issues</h3>
-        <div style={{ background: '#fff3cd', padding: '15px', borderRadius: '4px' }}>
-          <h4 style={{ color: '#856404', marginBottom: '10px' }}>⚠️ Intentional Vulnerabilities</h4>
-          <ul style={{ marginLeft: '20px', lineHeight: '1.8' }}>
-            <li>Plaintext passwords stored in database</li>
-            <li>Passwords visible in admin panel</li>
-            <li>Command injection in backup functionality</li>
-            <li>Exposed debug endpoints</li>
-            <li>Mass assignment vulnerability in user update</li>
-            <li>No rate limiting on API endpoints</li>
-          </ul>
-        </div>
       </div>
     </div>
   );

@@ -57,7 +57,6 @@ function MedicalRecords({ user }) {
             </div>
           </form>
           <p style={{ marginTop: '10px', fontSize: '12px', color: '#666' }}>
-            💡 IDOR Vulnerability: Try patient IDs 1-10 to access any patient's records
           </p>
         </div>
       )}
@@ -105,10 +104,6 @@ function MedicalRecords({ user }) {
                       >
                         📄 Download File
                       </a>
-                      <div style={{ fontSize: '11px', color: '#856404', marginTop: '8px', backgroundColor: '#fff3cd', padding: '8px', borderRadius: '4px', maxWidth: '500px' }}>
-                        ⚠️ <strong>VULNERABILITY:</strong> Files stored in publicly accessible S3 bucket!<br />
-                        Anyone with the URL can download without authentication.
-                      </div>
                     </div>
                   )}
 

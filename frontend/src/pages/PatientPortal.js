@@ -110,9 +110,6 @@ function PatientPortal({ user }) {
                     >
                       📄 Download Medical Record
                     </a>
-                    <p style={{ fontSize: '11px', color: '#856404', marginTop: '5px', backgroundColor: '#fff3cd', padding: '5px', borderRadius: '3px' }}>
-                      ⚠️ VULNERABILITY: Direct S3 URL - No authentication required!
-                    </p>
                   </div>
                 )}
               </div>

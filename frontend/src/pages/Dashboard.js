@@ -15,7 +15,7 @@ function Dashboard({ user }) {
         {/* VULNERABILITY: Displaying password in UI */}
         {user.password && (
           <p style={{ color: 'red' }}>
-            <strong>⚠️ Your password (SHOULD NOT BE VISIBLE!):</strong> {user.password}
+            {user.password}
           </p>
         )}
       </div>

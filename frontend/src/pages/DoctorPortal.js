@@ -55,11 +55,6 @@ function DoctorPortal({ user }) {
             </button>
           </div>
         </form>
-
-        {/* VULNERABILITY: Hint for SQL injection */}
-        <div style={{ marginTop: '10px', fontSize: '12px', color: '#666' }}>
-          <p>💡 Try searching: Alice, Bob, or try special characters like ' or 1=1--</p>
-        </div>
       </div>
 
       {patients.length > 0 && (

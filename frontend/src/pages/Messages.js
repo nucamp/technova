@@ -99,9 +99,6 @@ function Messages({ user }) {
                 rows="5"
                 required
               />
-              <small style={{ color: 'red' }}>
-                ⚠️ XSS Vulnerability: Try entering HTML/JavaScript like: {`<script>alert('XSS')</script>`} or {`<img src=x onerror=alert('XSS')>`}
-              </small>
             </div>
 
             <button type="submit" className="btn btn-success">
@@ -184,12 +181,6 @@ function Messages({ user }) {
                 }}
                 dangerouslySetInnerHTML={{ __html: selectedMessage.body }}
               />
-
-              <div style={{ marginTop: '15px', padding: '10px', background: '#fff3cd', borderRadius: '4px' }}>
-                <small style={{ color: '#856404' }}>
-                  ⚠️ This message is rendered without sanitization (XSS vulnerability)
-                </small>
-              </div>
             </>
           ) : (
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '400px', color: '#999' }}>
