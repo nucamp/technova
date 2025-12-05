@@ -1,0 +1,33 @@
+{
+  "name": "technova-backend",
+  "version": "1.0.0",
+  "description": "TechNova Health - Vulnerable Backend API for Cybersecurity Training",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "4.17.1",
+    "pg": "8.7.1",
+    "redis": "3.1.2",
+    "minio": "7.0.16",
+    "jsonwebtoken": "8.5.1",
+    "bcrypt": "5.0.0",
+    "cors": "2.8.5",
+    "dotenv": "10.0.0",
+    "body-parser": "1.19.0",
+    "cookie-parser": "1.4.5",
+    "multer": "1.4.2",
+    "morgan": "1.10.0",
+    "helmet": "4.6.0",
+    "express-rate-limit": "5.2.6",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.12"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

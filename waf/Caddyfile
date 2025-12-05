@@ -1,0 +1,82 @@
+{
+    # CRITICAL: Coraza WAF must be ordered first in the middleware chain
+    order coraza_waf first
+
+    # Disable admin API for security
+    admin off
+}
+
+# Main HTTP server on port 80
+:80 {
+    # Enable Coraza WAF with OWASP Core Rule Set
+    coraza_waf {
+        # Automatically load OWASP CRS rules
+        load_owasp_crs
+
+        # WAF Configuration Directives (ModSecurity syntax compatible)
+        directives `
+            # Include recommended Coraza configuration
+            Include @coraza.conf-recommended
+
+            # Include OWASP CRS setup
+            Include @crs-setup.conf.example
+
+            # VULNERABILITY: Running in DetectionOnly mode
+            # This is a common misconfiguration - WAF logs attacks but doesn't block!
+            # Perfect for teaching that "having a WAF" ≠ security
+            SecRuleEngine DetectionOnly
+
+            # Set paranoia level (1 = basic, 4 = very strict)
+            # Most orgs use level 1 to avoid false positives
+            SecAction "id:900000,phase:1,nolog,pass,t:none,setvar:tx.blocking_paranoia_level=1"
+
+            # Anomaly scoring thresholds (higher = more lenient)
+            SecAction "id:900110,phase:1,nolog,pass,t:none,setvar:tx.inbound_anomaly_score_threshold=5,setvar:tx.outbound_anomaly_score_threshold=4"
+
+            # Include all OWASP CRS rules
+            Include @owasp_crs/*.conf
+        `
+    }
+
+    # Health check endpoint
+    handle /health {
+        respond "WAF Healthy (Coraza + Caddy)\n" 200
+    }
+
+    # Proxy API requests to backend
+    handle /api/* {
+        reverse_proxy backend:3001 {
+            header_up Host {host}
+            header_up X-Real-IP {remote_host}
+            header_up X-Forwarded-For {remote_host}
+            header_up X-Forwarded-Proto {scheme}
+        }
+
+        # VULNERABILITY: WAF will inspect these requests
+        # But application logic flaws will bypass it completely!
+    }
+
+    # Proxy all other requests to frontend
+    handle {
+        reverse_proxy frontend:3000 {
+            header_up Host {host}
+            header_up X-Real-IP {remote_host}
+            header_up X-Forwarded-For {remote_host}
+            header_up X-Forwarded-Proto {scheme}
+        }
+    }
+
+    # Security headers (easily bypassable for teaching)
+    header {
+        X-Frame-Options "SAMEORIGIN"
+        X-Content-Type-Options "nosniff"
+        X-XSS-Protection "1; mode=block"
+        # VULNERABILITY: These headers don't stop our attacks!
+    }
+
+    # Logging
+    log {
+        output file /var/log/shared/waf_access.log
+        format json
+    }
+}

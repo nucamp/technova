@@ -1,0 +1,47 @@
+# Git
+.git
+.gitignore
+
+# Dependencies
+node_modules
+*/node_modules
+
+# Build outputs
+build
+dist
+*/build
+*/dist
+
+# Logs
+*.log
+logs
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode
+.idea
+
+# Environment files (normally you'd ignore these, but we're intentionally vulnerable)
+# .env
+
+# Docker
+docker-compose.yml
+Dockerfile
+*/Dockerfile
+
+# Documentation (don't need in containers)
+README.md
+VULNERABILITIES.md
+INSTRUCTOR_GUIDE.md
+QUICK_START.md
+*.md
+
+# Database volumes
+postgres-data
+minio-data
+
+# Misc
+.claude

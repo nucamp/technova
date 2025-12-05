@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Environment variables (in a real project)
+# .env
+# .env.local
+
+# Build outputs
+build/
+dist/
+*/build/
+*/dist/
+
+# Logs
+*.log
+npm-debug.log*
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker volumes
+postgres-data/
+minio-data/
+
+# NOTE: In a real project, we would include ssh-keys/ here!
+# ssh-keys/
+# But for this educational lab, we intentionally commit the keys to demonstrate the vulnerability
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary files
+*.tmp
+tmp/
+temp/

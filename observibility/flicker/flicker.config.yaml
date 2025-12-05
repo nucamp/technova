@@ -1,0 +1,72 @@
+log_files:
+  # WAF Access Logs
+  - path: "/var/log/shared/waf_access.log"
+    polling_frequency_ms: 500
+    buffer_size: 50
+    flush_interval_ms: 5000
+    destination:
+      type: "http"
+      endpoint: "http://openobserve:5080/api/default/waf_logs/_json"
+      basic:
+        username: "root@example.com"
+        password: "Complexpass#123"
+
+  # Backend Application Logs
+  - path: "/var/log/shared/backend_app.log"
+    polling_frequency_ms: 500
+    buffer_size: 50
+    flush_interval_ms: 5000
+    destination:
+      type: "http"
+      endpoint: "http://openobserve:5080/api/default/backend_logs/_json"
+      basic:
+        username: "root@example.com"
+        password: "Complexpass#123"
+
+  # Frontend Client Logs
+  - path: "/var/log/shared/frontend_client.log"
+    polling_frequency_ms: 500
+    buffer_size: 50
+    flush_interval_ms: 5000
+    destination:
+      type: "http"
+      endpoint: "http://openobserve:5080/api/default/frontend_logs/_json"
+      basic:
+        username: "root@example.com"
+        password: "Complexpass#123"
+
+  # Postgres Logs
+  - path: "/var/log/shared/postgres.log"
+    polling_frequency_ms: 500
+    buffer_size: 50
+    flush_interval_ms: 5000
+    destination:
+      type: "http"
+      endpoint: "http://openobserve:5080/api/default/postgres_logs/_json"
+      basic:
+        username: "root@example.com"
+        password: "Complexpass#123"
+
+  # Redis Logs
+  - path: "/var/log/shared/redis.log"
+    polling_frequency_ms: 500
+    buffer_size: 50
+    flush_interval_ms: 5000
+    destination:
+      type: "http"
+      endpoint: "http://openobserve:5080/api/default/redis_logs/_json"
+      basic:
+        username: "root@example.com"
+        password: "Complexpass#123"
+
+  # MinIO Logs
+  - path: "/var/log/shared/minio.log"
+    polling_frequency_ms: 500
+    buffer_size: 50
+    flush_interval_ms: 5000
+    destination:
+      type: "http"
+      endpoint: "http://openobserve:5080/api/default/minio_logs/_json"
+      basic:
+        username: "root@example.com"
+        password: "Complexpass#123"
