@@ -1,12 +1,19 @@
 {
-    # CRITICAL: Coraza WAF must be ordered first in the middleware chain
+    admin off
     order coraza_waf first
 
-    # Disable admin API for security
-    admin off
+    servers {
+        listener_wrappers {
+            layer4 {
+                @ssh ssh
+                route @ssh {
+                    proxy backend:22
+                }
+            }
+        }
+    }
 }
 
-# Main HTTP server on port 80
 :80 {
     # Enable Coraza WAF with OWASP Core Rule Set
     coraza_waf {

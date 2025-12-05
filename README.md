@@ -104,6 +104,11 @@ Students will learn to:
    - S3-compatible storage
    - Medical record attachments
 
+7. **Greenbone OpenVAS** - Port 9392
+   - Vulnerability Scanner
+   - Web interface for running security scans against the services.
+   - Default credentials: `admin` / `admin`
+
 ## 🚀 Getting Started
 
 ### Prerequisites

@@ -54,6 +54,7 @@ Try these accounts:
 | PostgreSQL | localhost:5432 | technova_admin/TechN0va2024! |
 | Redis | localhost:6379 | Password: redis123 |
 | SSH | localhost:2222 | Key: ssh-keys/id_rsa |
+| OpenVAS | http://localhost:9392 | admin/admin |
 
 ### Common Commands
 

@@ -3,7 +3,9 @@ FROM caddy:builder AS builder
 
 # Install xcaddy and build Caddy with Coraza plugin
 RUN xcaddy build \
-    --with github.com/corazawaf/coraza-caddy/v2
+    --with github.com/corazawaf/coraza-caddy/v2 \
+    --with github.com/mholt/caddy-l4 \
+    --with github.com/mholt/caddy-l4/modules/l4ssh
 
 # Final image
 FROM caddy:latest
