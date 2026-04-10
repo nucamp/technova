@@ -150,6 +150,8 @@ services:
       - vt_data_vol:/mnt
     networks:
       - technova-network
+    profiles:
+      - openvas
 
   notus-data:
     image: registry.community.greenbone.net/community/notus-data
@@ -157,6 +159,8 @@ services:
       - notus_data_vol:/mnt
     networks:
       - technova-network
+    profiles:
+      - openvas
 
   scap-data:
     image: registry.community.greenbone.net/community/scap-data
@@ -164,6 +168,8 @@ services:
       - scap_data_vol:/mnt
     networks:
       - technova-network
+    profiles:
+      - openvas
 
   cert-bund-data:
     image: registry.community.greenbone.net/community/cert-bund-data
@@ -171,6 +177,8 @@ services:
       - cert_data_vol:/mnt
     networks:
       - technova-network
+    profiles:
+      - openvas
 
   dfn-cert-data:
     image: registry.community.greenbone.net/community/dfn-cert-data
@@ -180,6 +188,8 @@ services:
       - cert-bund-data
     networks:
       - technova-network
+    profiles:
+      - openvas
 
   data-objects:
     image: registry.community.greenbone.net/community/data-objects
@@ -189,6 +199,8 @@ services:
       - data_objects_vol:/mnt
     networks:
       - technova-network
+    profiles:
+      - openvas
 
   report-formats:
     image: registry.community.greenbone.net/community/report-formats
@@ -200,6 +212,8 @@ services:
       - data-objects
     networks:
       - technova-network
+    profiles:
+      - openvas
 
   gpg-data:
     image: registry.community.greenbone.net/community/gpg-data
@@ -207,6 +221,8 @@ services:
       - gpg_data_vol:/mnt
     networks:
       - technova-network
+    profiles:
+      - openvas
 
   redis-server:
     image: registry.community.greenbone.net/community/redis-server
@@ -215,6 +231,8 @@ services:
       - redis_socket_vol:/run/redis/ 
     networks:
       - technova-network
+    profiles:
+      - openvas
 
   pg-gvm:
     image: registry.community.greenbone.net/community/pg-gvm:stable
@@ -224,6 +242,8 @@ services:
       - psql_socket_vol:/var/run/postgresql
     networks:
       - technova-network
+    profiles:
+      - openvas
 
   gvmd:
     image: registry.community.greenbone.net/community/gvmd:stable
@@ -253,6 +273,8 @@ services:
         condition: service_completed_successfully
     networks:
       - technova-network
+    profiles:
+      - openvas
 
   gsa:
     image: registry.community.greenbone.net/community/gsa:stable
@@ -265,6 +287,8 @@ services:
       - gvmd
     networks:
       - technova-network
+    profiles:
+      - openvas
 
   configure-openvas:
     image: registry.community.greenbone.net/community/openvas-scanner:stable
@@ -283,6 +307,8 @@ services:
         chmod 666 /var/log/openvas/openvas.log
     networks:
       - technova-network
+    profiles:
+      - openvas
 
   openvas:
     image: registry.community.greenbone.net/community/openvas-scanner:stable
@@ -301,6 +327,8 @@ services:
         condition: service_completed_successfully
     networks:
       - technova-network
+    profiles:
+      - openvas
 
   openvasd:
     image: registry.community.greenbone.net/community/openvas-scanner:stable
@@ -328,6 +356,8 @@ services:
       technova-network:
         aliases:
           - openvasd
+    profiles:
+      - openvas
 
   ospd-openvas:
     image: registry.community.greenbone.net/community/ospd-openvas:stable
@@ -369,6 +399,8 @@ services:
         condition: service_completed_successfully
     networks:
       - technova-network
+    profiles:
+      - openvas
 
   gvm-tools:
     image: registry.community.greenbone.net/community/gvm-tools
@@ -380,6 +412,8 @@ services:
       - ospd-openvas
     networks:
       - technova-network
+    profiles:
+      - openvas
 
 volumes:
   postgres-data:
