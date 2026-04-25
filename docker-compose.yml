@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: TechN0va2024!  # Intentionally weak password
       POSTGRES_DB: technova_health
     ports:
-      - "5433:5432"  # Using 5433 externally to avoid conflict with system PostgreSQL
+      - "5434:5432"  # Using 5434 externally to avoid conflict with system PostgreSQL
     volumes:
       - ./database/init:/docker-entrypoint-initdb.d
       - postgres-data:/var/lib/postgresql/data
