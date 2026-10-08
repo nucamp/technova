@@ -60,3 +60,31 @@ docker-compose up -d
 # Backend API: http://localhost:3001
 # MinIO Console: http://localhost:9001
 ```
+
+### MinIO image availability
+
+The official `minio/minio` Docker Hub repository is unavailable. This lab uses
+[Net Insight's preserved MinIO image](https://hub.docker.com/r/netiedge/minio),
+release `RELEASE.2025-01-20T14-49-07Z`, pinned to its multi-platform image digest.
+The mirror provides Linux AMD64 and ARM64 images and retains the MinIO console,
+S3 API, and bucket policies used by the exercises. It is a third-party mirror
+of a historical release; [upstream MinIO](https://github.com/minio/minio) is no
+longer maintained.
+
+After updating an existing checkout, pull the replacement and recreate MinIO:
+
+```bash
+docker compose pull minio
+docker compose up -d minio
+docker compose restart backend
+```
+
+The backend restart reruns automatic record seeding if its earlier startup
+could not reach MinIO. Verify the console at `http://localhost:9001` using
+`minioadmin` / `minioadmin`, and the public sample record at
+`http://localhost:9000/patient-records/record_1_patient001_20240115.txt`.
+
+Keep the `minio-data` volume. If it was written by a newer MinIO release, back it
+up before switching to this older release; compatibility with newer on-disk
+formats has not been verified. For reliable classroom distribution, preserve
+the pinned image in an instructor-controlled registry as well.
